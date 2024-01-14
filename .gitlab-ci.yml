@@ -1,0 +1,86 @@
+stages:
+  - development
+  - staging
+  - production
+
+image:
+  name: hashicorp/terraform:light
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+
+before_script:
+  - rm -rf .terraform
+  - terraform --version
+
+Dev_plan:
+  stage: development
+  script:
+    - cd environments/dev
+    - terraform init
+    - terraform plan -out "planfile"
+  artifacts:
+
+Dev_apply:
+  stage: development
+  script:
+    - cd environments/dev
+    - terraform init
+    - terraform apply -auto-approve
+  when: manual
+
+Dev_destroy:
+  stage: development
+  script:
+    - cd environments/dev
+    - terraform init
+    - terraform destroy -auto-approve
+  when: manual
+
+Staging_plan:
+  stage: staging
+  script:
+    - cd environments/staging
+    - terraform plan
+  when: manual
+  artifacts:
+
+Staging_apply:
+  stage: staging
+  script:
+    - cd environments/staging
+    - terraform init
+    - terraform apply -auto-approve
+  when: manual
+
+Staging_destroy:
+  stage: staging
+  script:
+    - cd environments/staging
+    - terraform init
+    - terraform destroy -auto-approve
+  when: manual
+
+Production_plan:
+  stage: production
+  script:
+    - cd environments/production
+    - terraform init
+    - terraform plan
+  when: manual
+
+Production_apply:
+  stage: production
+  script:
+    - cd environments/production
+    - terraform init
+    - terraform apply -auto-approve
+  when: manual
+
+Production_destroy:
+  stage: production
+  script:
+    - cd environments/production
+    - terraform init
+    - terraform destroy -auto-approve
+  when: manual
