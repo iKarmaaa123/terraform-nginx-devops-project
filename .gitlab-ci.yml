@@ -41,6 +41,7 @@ Staging_plan:
   stage: staging
   script:
     - cd environments/staging
+    - terraform init
     - terraform plan
   when: manual
   artifacts:
