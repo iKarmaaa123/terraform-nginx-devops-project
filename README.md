@@ -1,1 +1,1 @@
-                                                                                          <title> Terraform Nginx DevOps Project </title>
+<h1>Terraform Nginx DevOps Project</h1>
