@@ -49,7 +49,7 @@ Within each module directory there are 3 files: main.tf, output.tf and variables
 - variables.tf: creating default terraform variables which are placeholder values.
 </p>
 
-<h2> GitLab CI/CD <h2>
+<h2> GitLab CI/CD </h2>
   
 <p> As mentioned above, the project utilised a CI/CD pipeline to help automate the deploment process. The pipeline consists of three stages for each environment - the terraform plan stage, the terraform apply stage, and a terraform destroy stage. 
   
