@@ -21,7 +21,8 @@ Outside of these directories is a .gitlab-cy.yml file - this is a CI/CD pipeline
 
 <p> Each environment directory contains the same files: .gitignore, main.tf, terraform.tfvars, variables.tf, versions.tf.
 
-- .gitignore: used to ignore pushing certain files to GitHub in order to protect important credentials and passwords. 
+- .gitignore: used to ignore pushing certain files to GitHub in order to protect important credentials and passwords.
+   
 - main.tf: where both modules are being instantiated
 
 </p>
