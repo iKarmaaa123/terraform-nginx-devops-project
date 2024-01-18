@@ -1,69 +1,61 @@
-<h1>Terraform Nginx DevOps Project</h1>
 
-<h2>Brief Overview Of Project</h2>
+<h1>Terraform Nginx DevOps Project </h1>
 
-<p> This project involves installing an nginx web application onto an ec2 instance. The instance is part of a cloud inftrastructure that consists of a VPC with 2 subnets situated in 2 different availaility zones, internet gateway, and an application load balancer.
+<h2> Project Overview </h2>
 
-Within the project I used two modules: one for the ec2 instance (the instance where nginx will be running on), and a VPC (where the instance, and the other important components will be hosted in).  
-  
-The project involved working with 3 environments: development, which is where I designed and debugged the code; staging, which is where I tested the code to ensure that the quality comes under a production-like environment before application deployment; production, this is environement where the final build of the code goes.</p>
+This Terraform-driven project focuses on deploying an Nginx web application onto an EC2 instance within a robust cloud infrastructure. The architecture comprises a Virtual Private Cloud (VPC) with two strategically placed subnets in different availability zones, an internet gateway facilitating external communication, and an Application Load Balancer (ALB) for efficient traffic distribution.
 
-<h2>Directory Structure Of Project</h2>
+The project incorporates two essential modules: one for configuring the EC2 instance (the host for Nginx) and another for establishing the VPC housing the instance and other crucial components.
 
-<p>The project has three directories: environments, modules and tests. Within the environments directory, there are 3 folders for each environment. Each of these enivronment directories will have the same code and files, with the exception of the development directory not having an application load balancer. Within the modules directory, there are 2 folders: a webapp folder, and a vpc folder. 
-  
-The webapp folder contains the files that are used to create an ec2 instance. The vpc folder contains files need to create the network infrastructure where the instance will be hosted on. The tests directory contains files for terratests that are used to test the cloud infrastructure on golang. 
+<h2> Project Directory Structure </h2>
 
-Outside of these directories is a .gitlab-cy.yml file - this is a CI/CD pipeline that will be utilised to deploy the cloud resources for my project to AWS. A CI/CD pipeline was used to automate the deployment process, making it easier to send swift updates to the infrastructure. Now that we have delved into the directory structure of the project, it is time to go over all the files within these environment directories.
-</p>
+The project's structure is organized into three main directories: environments, modules, and tests. The environments directory features three subdirectories for each environment: development, staging, and production. While each environment shares common files, the development directory omits the configuration for an application load balancer. The modules directory houses two folders: webapp for the EC2 instance and vpc for the network infrastructure. The tests directory contains files for Terratests, facilitating thorough testing of the cloud infrastructure using Golang.
 
-<h2>Files Within Each Environment directory</h2>
+At the project's root, a .gitlab-ci.yml file orchestrates a CI/CD pipeline, streamlining the deployment of cloud resources on AWS. This automated pipeline enhances efficiency, enabling swift updates to the infrastructure.
 
-<p> Each environment directory contains the same files: .gitignore, main.tf, terraform.tfvars, variables.tf, versions.tf.
+<h2> Environment Files </h2>
 
-- .gitignore: used to ignore pushing certain files to GitHub in order to protect important credentials and passwords
-  
-- main.tf: where both modules are being instantiated
-  
-- terraform.tfvars: custom variables for our project
+<p>
+Each environment directory contains the same set of files:
 
-- variables.tf: where the default variables for the project are created
+.gitignore: Safeguards sensitive credentials and passwords from being pushed to GitHub.
 
-- versions.tf: file where we set up what version of terraform and aws we would like to use. We also decide what region we would like to deploy our cloud resources to.
+main.tf: Instantiates both modules, defining the structure of the cloud infrastructure.
 
-Within the staging and production environment, there is a block of code for th creation of an application load balancer. This is not in the dev environment main.tf file. Now that we have discussed about the contents within the environement directory it is time to move over to the main part of project; that being the custom modules that I created.
+terraform.tfvars: Custom variables tailored for the project.
+
+variables.tf: Establishes default variables for the project.
+
+versions.tf: Determines the Terraform and AWS versions to use and specifies the deployment region. Notably, the staging and production environments incorporate code for creating an application load balancer, absent in the development environment.
 </p>
 
 <h2> Modules </h2>
+<p>
+In Terraform, a module encapsulates a set of related resources to be managed collectively. For this project, two modules were created: webapp for the EC2 instance and vpc for the network infrastructure. Each module directory comprises three essential files:
 
-<p> In Terrafom, a module is a set of related resources that can be managed together. It enables the user to organise their infrastructure code in a modular and reusable way.
+main.tf: Defines the creation of the instance and related resources.
 
-As mentioned earlier, for the project we created two terraform modules: one for the ec2 instance, and one for the vpc.
+output.tf: Specifies output values communicated to other modules.
 
-Within each module directory there are 3 files: main.tf, output.tf and variables.tf.
-
-- main.tf: where the instance, and all the related resources are created.
-
-- output.tf: creating output values that will be passed onto other modules.
-
-- variables.tf: creating default terraform variables which are placeholder values.
+variables.tf: Establishes default Terraform variables, serving as placeholder values.
 </p>
 
-<h2> GitLab CI/CD </h2>
-  
-<p> As mentioned above, the project utilised a CI/CD pipeline to help automate the deploment process. The pipeline consists of three stages for each environment - the terraform plan stage, the terraform apply stage, and a terraform destroy stage. 
-  
-An S3 remote backend was used to stored the terraform state file; this makes it, so that all stages share the same backend, and will not work with their own respective local backends. This also prevents the use of an artifact which is used to save folder or files that could be used for future stages within the pipeline.</p>
+<h2> GitLab CI/CD Pipeline </h2>
+The CI/CD pipeline automates the deployment process through three stages for each environment: terraform plan, terraform apply, and terraform destroy. Leveraging an S3 remote backend ensures a shared state, preventing conflicts across stages. This approach eliminates the need for individual local backends, emphasizing a cohesive and consistent infrastructure.
 
-<h2> Tests </h2>
+Testing with Terratest
+Terratests play a pivotal role in validating various aspects of the infrastructure. The tests directory includes:
 
-<p> The project utilised terratests to help test various aspects of the infrastructure. For example, to see if we are using the correct vpc cidr block value or using the correct public subnet cidr block value 
+examples: Holds module folders for comprehensive testing.
 
-The tests directoy has the following folder and files: examples, .gitignore, vpc_test.go, webapp_test.go. The examples folder consists of the modules folders that we are using to test to see if everything works as expected. 
+.gitignore: Excludes unnecessary files from version control.
 
-The vpc_test.go file is where we set up a number of tests for our vpc: some of the tests consist of checking the number of public subnets within the network infrastructure, outputting the correct cidr block values for both vpc and both public subnets, and making sure that the resources we create are being deployed to the correct region.
+vpc_test.go: Orchestrates tests for the VPC, checking public subnet counts, verifying CIDR block values, and ensuring correct resource deployment to the specified region.
 
-The webapp_test.go file is where we set up a number of tests for our ec2 instance: checking to see if the instance is outputting the correct public_ip address which then used for another test that involves establishing a http request on port 80 to see if the the instance is reachable. Future tests that I could potentially do is trying to connect to the instance via an ALB, to see if the instance can be reached when accessing it via an application load balancer.
-</p>
+webapp_test.go: Conducts tests for the EC2 instance, validating the accuracy of the public IP address and assessing reachability through an HTTP request on port 80.
+
+The testing strategy embraces future enhancements, potentially including connectivity tests through an ALB to ascertain the instance's accessibility via an Application Load Balancer.
+
+This meticulously structured project, complete with an automated CI/CD pipeline and comprehensive testing suite, ensures the resilience, scalability, and reliability of the deployed infrastructure.
 
 
