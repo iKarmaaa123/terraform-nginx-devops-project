@@ -30,8 +30,8 @@ terraform.tfstate
 terraform.tfstate.backup
 
 - main.tf - where both modules are being instantiated:
-
-  module "vpcmodule" {
+  
+module "vpcmodule" {
   source = "../../modules/vpc"
   vpc_cidr_block = var.vpc_cidr_block
   public_subnet_cidr_block = var.public_subnet_cidr_block
@@ -53,7 +53,6 @@ module "ec2module" {
   vpc_id = module.vpcmodule.vpc_id
   security_group_ids = [module.vpcmodule.security_group_ids]
 }
-
 
 - terraform.tfvars: custom variables for our project
 
