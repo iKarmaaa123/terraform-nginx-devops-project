@@ -41,9 +41,14 @@ variables.tf: Establishes default Terraform variables, serving as placeholder va
 </p>
 
 <h2> GitLab CI/CD Pipeline </h2>
-The CI/CD pipeline automates the deployment process through three stages for each environment: terraform plan, terraform apply, and terraform destroy. Leveraging an S3 remote backend ensures a shared state, preventing conflicts across stages. This approach eliminates the need for individual local backends, emphasizing a cohesive and consistent infrastructure.
 
-Testing with Terratest
+<p>
+The CI/CD pipeline automates the deployment process through three stages for each environment: terraform plan, terraform apply, and terraform destroy. Leveraging an S3 remote backend ensures a shared state, preventing conflicts across stages. This approach eliminates the need for individual local backends, emphasizing a cohesive and consistent infrastructure.
+</p>
+
+<h2> Testing with Terratest </h2>
+
+<p>
 Terratests play a pivotal role in validating various aspects of the infrastructure. The tests directory includes:
 
 examples: Holds module folders for comprehensive testing.
@@ -57,5 +62,5 @@ webapp_test.go: Conducts tests for the EC2 instance, validating the accuracy of 
 The testing strategy embraces future enhancements, potentially including connectivity tests through an ALB to ascertain the instance's accessibility via an Application Load Balancer.
 
 This meticulously structured project, complete with an automated CI/CD pipeline and comprehensive testing suite, ensures the resilience, scalability, and reliability of the deployed infrastructure.
-
+</p>
 
