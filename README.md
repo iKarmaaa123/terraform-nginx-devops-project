@@ -29,35 +29,17 @@ project-key.pem
 terraform.tfstate
 terraform.tfstate.backup
 
-- main.tf - where both modules are being instantiated:
+- main.tf - where both modules are being instantiated
   
-module "vpcmodule" {
-  source = "../../modules/vpc"
-  vpc_cidr_block = var.vpc_cidr_block
-  public_subnet_cidr_block = var.public_subnet_cidr_block
-  vpc_name = var.vpc_name
-  subnet_name = var.subnet_name
-  environment = var.environment
-  availability_zones = var.availability_zones
-}
-
-module "ec2module" {
-  source = "../../modules/webapp"
-  instance_type = var.instance_type
-  ec2_count = var.ec2_count
-  eip_count = var.eip_count
-  key_name = var.key_name
-  environment = var.environment
-  user_data = var.user_data
-  subnet_ids = module.vpcmodule.subnet_ids
-  vpc_id = module.vpcmodule.vpc_id
-  security_group_ids = [module.vpcmodule.security_group_ids]
-}
-
 - terraform.tfvars: custom variables for our project
 
 - variables.tf: where the default variables for the project are created
 
 - versions.tf: file where we set up what version of terraform and aws we would like to use. We also decide what region we would like to deploy our cloud resources to.
 
+Within the staging and production environment, there is a block of code for th creation of an application load balancer. This is not in the dev environment main.tf file. Now that we have discussed about the contents within the environement directory it is time to move over to the main part of project; that being the custom modules that I created.
 </p>
+
+<h2> Modules </h2>
+
+<p> As mentioned earlier, for the project we created two terraform modules: one for the ec2 instance, and one for the vpc</p>
