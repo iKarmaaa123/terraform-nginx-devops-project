@@ -10,8 +10,7 @@ The project involved working with 3 environments: development, which is where I 
 
 <h2>Directory Structure Of Project</h2>
 
-<p>The project has three directories: environments, modules and tests. Within the environments directory, there are 3 folders for each environment. Each of these enivronment directories will have the same code and files, with the exception of the development directory not having an application load balancer: 
-![image](https://github.com/iKarmaaa123/terraform-nginx-devops-project/assets/107819238/53bc9437-45f1-4505-a367-0c06fc34ae2e)
+<p>The project has three directories: environments, modules and tests. Within the environments directory, there are 3 folders for each environment. Each of these enivronment directories will have the same code and files, with the exception of the development directory not having an application load balancer. Within the modules directory, there are 2 folders: a webapp folder, and a vpc folder. The webapp folder contains the files that are used to create an ec2 instance. The vpc folder contains files need to create the network infrastructure where the instance will be hosted on. The tests directory contains files for terratests that are used to test the cloud infrastructure on golang. Outside of these directories is a .gitlab-cy.yml file - this is a CI/CD pipeline that will be utilised to deploy the cloud resources for my project to AWS. A CI/CD pipeline was used to automate the deployment process, making it easier to send swift updates to the infrastructure.
 
 
 
