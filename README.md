@@ -19,5 +19,8 @@ Outside of these directories is a .gitlab-cy.yml file - this is a CI/CD pipeline
 
 <h2>Files Within Each Environment directory</h2>
 
-<p> Each environment directory contains the same files: ![image](https://github.com/iKarmaaa123/terraform-nginx-devops-project/assets/107819238/411e371e-0ddd-43af-9f80-edcc1e0f9682)
- </p>
+<p> Each environment directory contains the same files: *** .gitignore, main.tf, terraform.tfvars, variables.tf, versions.tf ***.
+
+- .gitignore.
+
+</p>
