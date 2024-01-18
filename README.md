@@ -49,6 +49,12 @@ Within each module directory there are 3 files: main.tf, output.tf and variables
 - variables.tf: creating default terraform variables which are placeholder values.
 </p>
 
+<h2> GitLab CI/CD <h2>
+  
+<p> As mentioned above, the project utilised a CI/CD pipeline to help automate the deploment process. The pipeline consists of three stages for each environment - the terraform plan stage, the terraform apply stage, and a terraform destroy stage. 
+  
+An S3 remote backend was used to stored the terraform state file; this makes it, so that all stages share the same backend, and will not work with their own respective local backends. This also prevents the use of an artifact which is used to save folder or files that could be used for future stages within the pipeline.</p>
+
 <h2> Tests </h2>
 
 <p> The project utilised terratests to help test various aspects of the infrastructure. For example, to see if we are using the correct vpc cidr block value or using the correct public subnet cidr block value 
