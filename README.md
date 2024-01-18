@@ -14,6 +14,10 @@ The project involved working with 3 environments: development, which is where I 
   
 The webapp folder contains the files that are used to create an ec2 instance. The vpc folder contains files need to create the network infrastructure where the instance will be hosted on. The tests directory contains files for terratests that are used to test the cloud infrastructure on golang. 
 
-Outside of these directories is a .gitlab-cy.yml file - this is a CI/CD pipeline that will be utilised to deploy the cloud resources for my project to AWS. A CI/CD pipeline was used to automate the deployment process, making it easier to send swift updates to the infrastructure.
-
+Outside of these directories is a .gitlab-cy.yml file - this is a CI/CD pipeline that will be utilised to deploy the cloud resources for my project to AWS. A CI/CD pipeline was used to automate the deployment process, making it easier to send swift updates to the infrastructure. Now that we have delved into the directory structure of the project, it is time to go over all the files within these environment directories.
 </p>
+
+<h2>Files Within Each Environment directory</h2>
+
+<p> Each environment directory contains the same files: ![image](https://github.com/iKarmaaa123/terraform-nginx-devops-project/assets/107819238/411e371e-0ddd-43af-9f80-edcc1e0f9682)
+ </p>
