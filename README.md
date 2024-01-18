@@ -21,15 +21,9 @@ Outside of these directories is a .gitlab-cy.yml file - this is a CI/CD pipeline
 
 <p> Each environment directory contains the same files: .gitignore, main.tf, terraform.tfvars, variables.tf, versions.tf.
 
-- .gitignore - used to ignore pushing certain files to GitHub in order to protect important credentials and passwords:
-
-.terraform
-.terraform.lock.hcl
-project-key.pem
-terraform.tfstate
-terraform.tfstate.backup
-
-- main.tf - where both modules are being instantiated
+- .gitignore: used to ignore pushing certain files to GitHub in order to protect important credentials and passwords
+  
+- main.tf: where both modules are being instantiated
   
 - terraform.tfvars: custom variables for our project
 
@@ -42,15 +36,28 @@ Within the staging and production environment, there is a block of code for th c
 
 <h2> Modules </h2>
 
-<p> In Terrafom, a module is a set of related resources that can be managed together. It enables the user to organise their infrastructure code in a modular and reusable way. </p>
+<p> In Terrafom, a module is a set of related resources that can be managed together. It enables the user to organise their infrastructure code in a modular and reusable way.
 
-<p> As mentioned earlier, for the project we created two terraform modules: one for the ec2 instance, and one for the vpc.
+As mentioned earlier, for the project we created two terraform modules: one for the ec2 instance, and one for the vpc.
 
-Within each module directory there are 3 files: main.tf, output.tf and variables.tf
+Within each module directory there are 3 files: main.tf, output.tf and variables.tf.
 
- main.tf: where the instance, and all the related resources are created.
+- main.tf: where the instance, and all the related resources are created.
 
- output.tf: creating output values that will be passed onto other modules
+- output.tf: creating output values that will be passed onto other modules.
 
- variables.tf: creating default terraform variables which are placeholder values.
+- variables.tf: creating default terraform variables which are placeholder values.
 </p>
+
+<h2> Tests </h2>
+
+<p> The project utilised terratests to help test various aspects of the infrastructure. For example, to see if we are using the correct vpc cidr block value or using the correct public subnet cidr block value 
+
+The tests directoy has the following folder and files: examples, .gitignore, vpc_test.go, webapp_test.go. The examples folder consists of the modules folders that we are using to test to see if everything works as expected. 
+
+The vpc_test.go file is where we set up a number of tests for our vpc: some of the tests consist of checking the number of public subnets within the network infrastructure, outputting the correct cidr block values for both vpc and both public subnets, and making sure that the resources we create are being deployed to the correct region.
+
+The webapp_test.go file is where we set up a number of tests for our ec2 instance: checking to see if the instance is outputting the correct public_ip address which then used for another test that involves establishing a http request on port 80 to see if the the instance is reachable. Future tests that I could potentially do is trying to connect to the instance via an ALB, to see if the instance can be reached when accessing it via an application load balancer.
+</p>
+
+
