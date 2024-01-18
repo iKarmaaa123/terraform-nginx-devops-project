@@ -42,4 +42,15 @@ Within the staging and production environment, there is a block of code for th c
 
 <h2> Modules </h2>
 
-<p> As mentioned earlier, for the project we created two terraform modules: one for the ec2 instance, and one for the vpc</p>
+<p> In Terrafom, a module is a set of related resources that can be managed together. It enables the user to organise their infrastructure code in a modular and reusable way. </p>
+
+<p> As mentioned earlier, for the project we created two terraform modules: one for the ec2 instance, and one for the vpc.
+
+Within each module directory there are 3 files: main.tf, output.tf and variables.tf
+
+ main.tf: where the instance, and all the related resources are created.
+
+ output.tf: creating output values that will be passed onto other modules
+
+ variables.tf: creating default terraform variables which are placeholder values.
+</p>
