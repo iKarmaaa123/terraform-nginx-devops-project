@@ -73,11 +73,11 @@ The project's architecture could have benefited from utilizing private instances
 
 The project could have employed public subnets as bastion hosts for the application hosted on two private instances. The bastion host would act as an entry point for users to gain access to Nginx. There are several advantages to this architectural framework:
 
-- High availability and redundancy: Distributing the application across multiple availability zones provides redundancy. If one availability zone experiences issues, the instances in a different zone can continue to handle traffic.
+- Authentication and Authorization: The bastion host serves as a point for authentication. Users must authenticate themselves to the bastion host before gaining access to other servers. This allows for central control and management of user access, ensuring that only authorized users can access the internal network.
 
-- Scaling: Having multiple instances allows you to scale your application horizontally by adding more instances to accommodate growing workloads.
+- Logging and Monitoring: All remote access to the internal network is funneled through the bastion host, making it a centralized point for logging and monitoring. This aids in auditing user activity, detecting suspicious behavior, and maintaining an audit trail for security purposes.
 
-- Rolling updates and maintenance: When performing updates or maintenance tasks, multiple instances can be used to implement a rolling update strategy. Adopting this approach enables you to update instances one at a time while maintaining continuous service availability.
+- Rolling updates and maintenance: Regular maintenance and updates are applied to the bastion host to address security vulnerabilities and ensure that it remains a secure entry point.
 
-- Fault isolation: If one instance encounters issues, having multiple instances ensures that the overall application remains operational. Issues affecting one instance do not impact others, thereby enhancing fault isolation.
+- Reduced Attack Surface: By limiting direct access to private instances and exposing only the bastion host to the internet, you reduce the attack surface. The security measures and configurations on the bastion host can be tightly controlled, minimizing the risk of unauthorized access.
 </p>
