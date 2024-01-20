@@ -64,3 +64,20 @@ The testing strategy embraces future enhancements, potentially including connect
 This meticulously structured project, complete with an automated CI/CD pipeline and comprehensive testing suite, ensures the resilience, scalability, and reliability of the deployed infrastructure.
 </p>
 
+<h2> Changes That Could Be Made To The Architecture Design Of The Project </h2>
+
+<p> 
+As mentioned earlier, this terraform architecture consists of a VPC which is hosting two public instances in separate availability zones, situated in two distinct availability zones. There is an Application Load Balancer with an internet gateway. 
+  
+The project's architecture could have benefitted from utilised private instances stored in private subnets, and databases stored within private subnets as well. Reason for this is that whilst the user accesses the nginx web application, access logs, security logs, performance metrics as well as error logging could be collected and sent to the database; thus, proving a means of assessing the application's state.
+
+The project could have utilised the public subnets to be bastion hosts for the application being hosted on two private instances. The bastion host will act an an entry point for the to gain access to nginx. There are many advantages for this architectural framework: 
+
+- High availbaility and redundancy - distributing the application across a multitude of different availability zones provides high availability redundancy. if one availabilty zone experiences issues, the other instances in a different zone can continue to handle traffic.
+
+- Scaling - Having multiple instances allows you to scale your application horizontally by adding more instances to accommodate growing workloads.
+
+- Rolling updates and maintenance - when performing updates or maintenance tasks, you can use multiple instances to implement a rolling update strategy. Adopting this approach enables you to updates instances one at a time while maintaining continuous service availabilty.
+
+- Fault isolation - if one instance encountets issues, having multiple instances ensures that the overall application reamins operation. Issues affecting one instance do not impact other, therefore enhancing fault isolation.
+</p>
