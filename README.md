@@ -64,20 +64,20 @@ The testing strategy embraces future enhancements, potentially including connect
 This meticulously structured project, complete with an automated CI/CD pipeline and comprehensive testing suite, ensures the resilience, scalability, and reliability of the deployed infrastructure.
 </p>
 
-<h2> Changes That Could Be Made To The Architecture Design Of The Project </h2>
+<h2> Changes That Could Be Made To The Architectural Design Of The Project </h2>
 
 <p> 
-As mentioned earlier, this terraform architecture consists of a VPC which is hosting two public instances in separate availability zones, situated in two distinct availability zones. There is an Application Load Balancer with an internet gateway. 
-  
-The project's architecture could have benefitted from utilised private instances stored in private subnets, and databases stored within private subnets as well. Reason for this is that whilst the user accesses the nginx web application, access logs, security logs, performance metrics as well as error logging could be collected and sent to the database; thus, proving a means of assessing the application's state.
+As mentioned earlier, this Terraform architecture consists of a VPC hosting two public instances in separate availability zones. There is an Application Load Balancer with an internet gateway.
 
-The project could have utilised the public subnets to be bastion hosts for the application being hosted on two private instances. The bastion host will act an an entry point for the to gain access to nginx. There are many advantages for this architectural framework: 
+The project's architecture could have benefited from utilizing private instances stored in private subnets, along with databases also placed within private subnets. The rationale behind this is that while users access the Nginx web application, access logs, security logs, performance metrics, and error logs could be collected and sent to the database, providing a means of assessing the application's state.
 
-- High availbaility and redundancy - distributing the application across a multitude of different availability zones provides high availability redundancy. if one availabilty zone experiences issues, the other instances in a different zone can continue to handle traffic.
+The project could have employed public subnets as bastion hosts for the application hosted on two private instances. The bastion host would act as an entry point for users to gain access to Nginx. There are several advantages to this architectural framework:
 
-- Scaling - Having multiple instances allows you to scale your application horizontally by adding more instances to accommodate growing workloads.
+- High availability and redundancy: Distributing the application across multiple availability zones provides redundancy. If one availability zone experiences issues, the instances in a different zone can continue to handle traffic.
 
-- Rolling updates and maintenance - when performing updates or maintenance tasks, you can use multiple instances to implement a rolling update strategy. Adopting this approach enables you to updates instances one at a time while maintaining continuous service availabilty.
+- Scaling: Having multiple instances allows you to scale your application horizontally by adding more instances to accommodate growing workloads.
 
-- Fault isolation - if one instance encountets issues, having multiple instances ensures that the overall application reamins operation. Issues affecting one instance do not impact other, therefore enhancing fault isolation.
+- Rolling updates and maintenance: When performing updates or maintenance tasks, multiple instances can be used to implement a rolling update strategy. Adopting this approach enables you to update instances one at a time while maintaining continuous service availability.
+
+- Fault isolation: If one instance encounters issues, having multiple instances ensures that the overall application remains operational. Issues affecting one instance do not impact others, thereby enhancing fault isolation.
 </p>
