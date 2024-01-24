@@ -18,7 +18,7 @@ Dev_plan:
   script:
     - cd environments/dev
     - terraform init
-    - terraform plan -out "planfile"
+    - terraform plan
 
 Dev_apply:
   stage: development
@@ -43,7 +43,6 @@ Staging_plan:
     - terraform init
     - terraform plan
   when: manual
-  artifacts:
 
 Staging_apply:
   stage: staging
