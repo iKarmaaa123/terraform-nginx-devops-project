@@ -19,7 +19,6 @@ Dev_plan:
     - cd environments/dev
     - terraform init
     - terraform plan -out "planfile"
-  artifacts:
 
 Dev_apply:
   stage: development
