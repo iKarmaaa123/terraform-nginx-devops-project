@@ -1,4 +1,2 @@
 go.mod
 go.sum
-vpc_test.go
-webapp_test.go
