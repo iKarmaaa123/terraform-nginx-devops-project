@@ -3,7 +3,7 @@
 
 <h2> Project Overview </h2>
 
-This Terraform-driven project focuses on deploying an Nginx web application onto an EC2 instance within a robust cloud infrastructure. The architecture comprises a Virtual Private Cloud (VPC) with two strategically placed subnets in different availability zones, an internet gateway facilitating external communication, and an Application Load Balancer (ALB) for efficient traffic distribution.
+This Terraform-driven project focuses on deploying an Nginx web server onto an EC2 instance within a robust cloud infrastructure. The architecture comprises a Virtual Private Cloud (VPC) with two strategically placed subnets in different availability zones, an internet gateway facilitating external communication, and an Application Load Balancer (ALB) for efficient traffic distribution.
 
 The project incorporates two essential modules: one for configuring the EC2 instance (the host for Nginx) and another for establishing the VPC housing the instance and other crucial components.
 
