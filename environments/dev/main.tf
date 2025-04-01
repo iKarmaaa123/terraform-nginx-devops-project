@@ -21,6 +21,5 @@ module "ec2module" {
   security_group_ids = [module.vpcmodule.security_group_ids]
 }
 
-//fndnn
 
 
